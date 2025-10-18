@@ -136,6 +136,10 @@ app.get("/dev-uploads", async (req, res) => {
   res.render("dev-uploads", { key: req.query.key, uploads });
 });
 
+app.get("/dev/uploads", (req, res) => {
+  res.redirect(`/dev-uploads?key=${req.query.key || ''}`);
+});
+
 // --- 404 fallback ---
 app.use((req, res) => res.status(404).send("Page not found"));
 
