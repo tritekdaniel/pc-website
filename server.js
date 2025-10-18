@@ -54,7 +54,7 @@ const upload = multer({ storage });
 async function saveSubmission(type, data) {
   try {
     const { error } = await supabase.from("submissions").insert([
-      { type, data, date: new Date().toISOString(), status: "open" },
+      { type, data, status: "open" } // removed date
     ]);
     if (error) console.error("Supabase insert error:", error);
   } catch (err) {
