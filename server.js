@@ -110,6 +110,32 @@ app.get("/dev", async (req, res) => {
   res.render("dev", { submissions, key: req.query.key, supabaseConfigured: true });
 });
 
+// --- Developer Uploads Page ---
+app.get("/dev-uploads", async (req, res) => {
+  if (!checkDevKey(req.query.key)) return res.status(403).send("Forbidden");
+
+  let uploads = [];
+  try {
+    // Fetch uploads from Supabase if you later add a dedicated uploads table.
+    // For now, we can just show files from your /public/uploads folder.
+    const uploadsDir = path.join(__dirname, "public/uploads");
+    const photoDir = path.join(uploadsDir, "photos");
+    const stlDir = path.join(uploadsDir, "stl");
+
+    const photos = fs.existsSync(photoDir) ? fs.readdirSync(photoDir) : [];
+    const stls = fs.existsSync(stlDir) ? fs.readdirSync(stlDir) : [];
+
+    uploads = [
+      ...photos.map(name => ({ type: "photo", name })),
+      ...stls.map(name => ({ type: "stl", name })),
+    ];
+  } catch (err) {
+    console.error("Uploads route error:", err);
+  }
+
+  res.render("dev-uploads", { key: req.query.key, uploads });
+});
+
 // --- 404 fallback ---
 app.use((req, res) => res.status(404).send("Page not found"));
 
