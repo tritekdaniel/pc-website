@@ -9,7 +9,12 @@ import { fileURLToPath } from "url";
 import { createClient } from "@supabase/supabase-js";
 
 // --- Supabase Setup ---
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE);
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY; // use one key only (anon or service_role)
+if (!supabaseUrl || !supabaseKey) {
+  console.error("❌ Missing Supabase credentials. Check .env for SUPABASE_URL and SUPABASE_KEY.");
+}
+const supabase = createClient(supabaseUrl, supabaseKey);
 const ADMIN_KEY = process.env.ADMIN_KEY || "devkey123";
 
 const app = express();
