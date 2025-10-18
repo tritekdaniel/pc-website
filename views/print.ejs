@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>3D Printing - Quirkles Tech</title>
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="min-h-screen bg-black text-white antialiased bg-cover bg-center" style="background-image: url('/img/print.jpg'); background-attachment: fixed;">
+  <div class="backdrop-blur-sm bg-black/70 min-h-screen">
+    <%- include('partials/header') %>
+
+    <main class="max-w-4xl mx-auto px-6 py-24">
+      <div class="backdrop-blur-md bg-black/50 rounded-2xl border border-white/10 p-6 shadow-2xl">
+        <h1 class="text-3xl font-bold mb-4 text-red-600">3D Printing Service</h1>
+        <p class="text-gray-300 mb-6">Have a file ready to print? Upload it here and we’ll handle the rest.</p>
+
+        <form action="/3d-print" method="POST" enctype="multipart/form-data" class="space-y-5">
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Email Address</label>
+            <input type="email" name="email" required class="input-dark w-full">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Material</label>
+            <select name="material" class="input-dark w-full">
+              <option value="PLA">PLA</option>
+              <option value="ABS">ABS</option>
+              <option value="PETG">PETG</option>
+              <option value="Resin">Resin</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Post-Processing?</label>
+            <select name="postProcess" class="input-dark w-full">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Upload STL File</label>
+            <input type="file" name="stl" accept=".stl" required class="input-dark w-full bg-transparent">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Additional Notes</label>
+            <textarea name="message" rows="3" placeholder="Any extra details or requests" class="input-dark w-full"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full">Submit Print Request</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+  </div>
+</body>
+</html>

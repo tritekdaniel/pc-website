@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Developer Uploads</title>
+  <link rel="stylesheet" href="/css/tailwind.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="min-h-screen text-white antialiased">
+  <%- include('partials/header') %>
+
+ <main class="max-w-4xl mx-auto px-6 py-24">
+    <h1 class="text-2xl font-bold text-accent mb-6">Uploads</h1>
+
+    <div class="backdrop-glass no-hover p-6">
+      <form action="/dev/upload" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="<%= key %>" />
+        <label class="text-sm text-gray-300">Upload Files</label>
+        <input type="file" name="files" multiple required class="mb-3" />
+        <button type="submit" class="btn-primary">Upload</button>
+      </form>
+
+      <% if (uploads && uploads.length > 0) { %>
+        <div class="mt-10">
+          <h2 class="text-xl font-semibold text-accent mb-3">Uploaded Files</h2>
+          <div class="space-y-3">
+            <% uploads.forEach(u => { %>
+              <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                <span class="text-gray-300 text-sm"><%= u.name %></span>
+                <a href="<%= u.url %>" download class="btn-ghost btn-sm">Download</a>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      <% } else { %>
+        <p class="text-gray-400 mt-4">No files uploaded yet.</p>
+      <% } %>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

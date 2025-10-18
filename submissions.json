@@ -1,0 +1,28 @@
+[
+  {
+    "type": "pc-build",
+    "data": {
+      "email": "daniel@llamalan.com",
+      "budget": "all-out",
+      "customBudget": "",
+      "purpose": "gaming",
+      "size": "small",
+      "os": "windows",
+      "peripherals": "yes"
+    },
+    "date": "2025-10-18T02:16:42.338Z"
+  },
+  {
+    "type": "pc-build",
+    "data": {
+      "email": "daniel@llamalan.com",
+      "budget": "budget",
+      "customBudget": "2500",
+      "purpose": "productivity",
+      "size": "medium",
+      "os": "windows",
+      "peripherals": "yes"
+    },
+    "date": "2025-10-18T03:08:50.570Z"
+  }
+]

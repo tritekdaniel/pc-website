@@ -1,0 +1,35 @@
+<header class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between backdrop-blur-md bg-black/50 border-b border-[#940000]/40">
+    <a href="/" class="flex items-center gap-3 group">
+      <img src="/img/logo.svg"
+           alt="Atritek"
+           class="w-10 h-10 object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_6px_#940000]"
+           onerror="this.style.display='none'"/>
+      <span class="text-white font-semibold tracking-wide ml-1 group-hover:text-[#ff4d4d] transition-colors duration-300">
+        Atritek
+      </span>
+    </a>
+
+    <nav class="hidden md:flex gap-6 text-sm items-center">
+      <a href="/pc-build" class="nav-link hover:text-[#ff4d4d] transition">PC Builds</a>
+      <a href="/console-fix" class="nav-link hover:text-[#ff4d4d] transition">Console Fix</a>
+      <a href="/3d-print" class="nav-link hover:text-[#ff4d4d] transition">3D Print</a>
+      <a href="/dev?key=<%= typeof key !== 'undefined' ? key : '' %>" class="nav-link hover:text-[#ff4d4d] transition">Dev</a>
+    </nav>
+
+    <div class="md:hidden">
+      <button id="mobileToggle" class="nav-link">Menu</button>
+    </div>
+  </div>
+
+  <div id="topBar" class="fixed left-0 right-0 top-0 h-1 z-60 opacity-0 pointer-events-none">
+    <div id="topBarInner" class="h-1 w-0 bg-gradient-to-r from-[#940000] via-[#ff4d4d] to-[#940000]"></div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mobileToggle');
+    btn?.addEventListener('click', () => alert('Use the main nav on desktop; mobile menu not implemented yet.'));
+  });
+</script>

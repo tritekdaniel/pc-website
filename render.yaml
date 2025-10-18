@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pc-repair-site-v3.2
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: DEV_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false

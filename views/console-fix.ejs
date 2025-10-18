@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Console & Controller Repair - Quirkles Tech</title>
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="min-h-screen bg-black text-white antialiased bg-cover bg-center" style="background-image: url('/img/console.jpg'); background-attachment: fixed;">
+  <div class="backdrop-blur-sm bg-black/70 min-h-screen">
+    <%- include('partials/header') %>
+
+    <main class="max-w-4xl mx-auto px-6 py-24">
+      <div class="backdrop-blur-md bg-black/50 rounded-2xl border border-white/10 p-6 shadow-2xl">
+        <h1 class="text-3xl font-bold mb-4 text-red-600">Console & Controller Repair</h1>
+        <p class="text-gray-300 mb-6">Describe your issue and we’ll get your hardware back in the game.</p>
+
+        <form action="/console-fix" method="POST" class="space-y-5">
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Email Address</label>
+            <input type="email" name="email" required class="input-dark w-full">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Device</label>
+            <input type="text" name="device" placeholder="e.g. PS5, Xbox Series X, DualSense, etc." class="input-dark w-full">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Does it turn on?</label>
+            <select name="turnOn" class="input-dark w-full">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Issue or Mod Type</label>
+            <textarea name="issue" rows="4" placeholder="Describe the issue or desired mod (e.g., Hall Effect sticks)" class="input-dark w-full"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full">Submit Repair Request</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+  </div>
+</body>
+</html>

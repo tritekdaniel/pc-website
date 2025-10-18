@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PC Build - Quirkles Tech</title>
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="min-h-screen bg-black text-white antialiased bg-cover bg-center" style="background-image: url('/img/pc.jpg'); background-attachment: fixed;">
+  <div class="backdrop-blur-sm bg-black/70 min-h-screen">
+    <%- include('partials/header') %>
+
+    <main class="max-w-4xl mx-auto px-6 py-24">
+      <div class="backdrop-blur-md bg-black/50 rounded-2xl border border-white/10 p-6 shadow-2xl">
+        <h1 class="text-3xl font-bold mb-4 text-red-600">Custom PC Build</h1>
+        <p class="text-gray-300 mb-6">Answer a few quick questions to help us design your perfect rig.</p>
+
+        <form action="/pc-build" method="POST" class="space-y-5">
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Email Address</label>
+            <input type="email" name="email" required class="input-dark w-full">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Budget</label>
+            <select name="budget" class="input-dark w-full">
+              <option value="budget">Budget</option>
+              <option value="mid">Mid-Range</option>
+              <option value="all-out">All-Out</option>
+            </select>
+            <input type="number" name="customBudget" placeholder="Or enter a custom budget" class="input-dark w-full mt-2">
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Purpose</label>
+            <select name="purpose" class="input-dark w-full">
+              <option value="gaming">Gaming</option>
+              <option value="productivity">Productivity</option>
+              <option value="studio">Studio / Creative</option>
+              <option value="mix">Mixed Use</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Size Preference</label>
+            <select name="size" class="input-dark w-full">
+              <option value="small">Small Form Factor</option>
+              <option value="medium">Medium Tower</option>
+              <option value="large">Full Tower</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Operating System</label>
+            <select name="os" class="input-dark w-full">
+              <option value="windows">Windows</option>
+              <option value="linux">Linux</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-300 mb-1">Include Peripherals?</label>
+            <select name="peripherals" class="input-dark w-full">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary w-full">Submit Build Request</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Developer Dashboard</title>
+  <link rel="stylesheet" href="/css/tailwind.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="min-h-screen text-white antialiased">
+  <%- include('partials/header') %>
+
+  <main class="max-w-6xl mx-auto px-6 pt-28 pb-12">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold text-accent">Developer Dashboard</h1>
+      <div class="flex gap-3 items-center">
+        <a class="btn-ghost" href="/">Home</a>
+        <a class="btn-ghost" href="/dev/uploads?key=<%= key %>">Uploads</a>
+        <a class="btn-primary" href="/dev/export/csv?key=<%= key %>">Export CSV</a>
+      </div>
+    </div>
+
+    <div class="backdrop-glass no-hover p-6">
+      <div class="mb-4 text-sm text-gray-300">
+        Storage: <%= supabaseConfigured ? 'Supabase' : 'Local JSON' %>
+      </div>
+
+      <div id="tableWrap" class="overflow-x-auto">
+        <table id="subsTable" class="w-full text-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Type</th>
+              <th>Email</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (submissions && submissions.length) { %>
+              <% submissions.forEach(function(s, i) { %>
+                <tr class="border-t border-white/5 align-top">
+                  <td><%= i %></td>
+                  <td class="capitalize"><%= s.type %></td>
+                  <td><%= s.data?.email || '' %></td>
+                  <td>
+                    <pre class="text-xs text-gray-300 bg-black/30 p-2 rounded"><%= JSON.stringify(s.data, null, 2) %></pre>
+                  </td>
+                  <td><%= s.status || 'open' %></td>
+                  <td><%= s.created_at || '' %></td>
+                  <td>
+                    <form method="POST" action="/dev/update">
+                      <input type="hidden" name="id" value="<%= s.id || i %>">
+                      <input type="hidden" name="key" value="<%= key %>">
+                      <select name="status" class="input-dark text-xs mb-2">
+                        <option value="open" <%= s.status === 'open' ? 'selected' : '' %>>Open</option>
+                        <option value="in_progress" <%= s.status === 'in_progress' ? 'selected' : '' %>>In Progress</option>
+                        <option value="completed" <%= s.status === 'completed' ? 'selected' : '' %>>Completed</option>
+                      </select>
+                      <button type="submit" class="btn-ghost btn-sm">Update</button>
+                    </form>
+                    <form method="POST" action="/dev/delete" onsubmit="return confirm('Delete this entry?');">
+                      <input type="hidden" name="id" value="<%= s.id || i %>">
+                      <input type="hidden" name="key" value="<%= key %>">
+                      <button class="btn-ghost btn-sm mt-2">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }); %>
+            <% } else { %>
+              <tr><td colspan="7" class="p-4 text-gray-400 text-center">No submissions yet.</td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
